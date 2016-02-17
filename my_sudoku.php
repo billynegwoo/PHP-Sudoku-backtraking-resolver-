@@ -55,9 +55,6 @@ function draw($grid)
 
 function get_next_coords($grid, $y, $x){
 
-    if($grid[$x][$y] != 0){
-        return get_next_coords($grid,$y,$x);
-    }
 };
 
 
