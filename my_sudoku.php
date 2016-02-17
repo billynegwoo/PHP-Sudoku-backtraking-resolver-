@@ -1,34 +1,65 @@
 <?php
-function fill_grid($grid){
+function fill_grid($grid)
+{
+    for($i = 1; $i <= 9; $i++ ){
+
+    };
+};
+
+function fill_cell($grid, $y, $x)
+{
 
 };
 
-function fill_cell($grid, $y, $x){
+function check_horizontal($grid, $y, $value)
+{
+    for($x = 0; $x < 9; $x++){
+        if($grid[$y][$x] == $value)return false;
+    }
+    return true;
+};
+
+function check_vertical($grid, $x, $value)
+{
+    for($y = 0; $y < 9; $y++){
+        if($grid[$y][$x] == $value)return false;
+    }
+    return true;
 
 };
 
-function check_horizontal($grid, $y, $value){
 
+function check_square($grid, $y, $x, $value)
+{
+    $_x = $x-($x%3);
+    $_y = $y-($y%3);
+    for($x = $_x ; $x < $_x+3; $x++){
+        for($y = $_y; $y < $_y+ 3; $y++){
+            if($grid[$x][$y] == $value)return false;
+        }
+    }
+    return true;
 };
 
-function check_vertical($grid, $x, $value){
 
-};
-
-function check_square($grid, $y, $x, $value){
-
-};
-
-
-function draw($grid){
-    foreach($grid as $line){
+function draw($grid)
+{
+    foreach ($grid as $line) {
         echo "|";
-        foreach($line as $case ){
+        foreach ($line as $case) {
             echo $case . "|";
         }
         echo "\n";
     }
 };
+
+function get_next_coords($grid, $y, $x){
+
+    if($grid[$x][$y] != 0){
+        return get_next_coords($grid,$y,$x);
+    }
+};
+
 
 $grid = array(
     array(0, 0, 4),
@@ -36,7 +67,7 @@ $grid = array(
     array(1, 0, 9)
 );
 
-for($i = 1 ; $i< 10; $i++ ){
 
-}
+
+
 
