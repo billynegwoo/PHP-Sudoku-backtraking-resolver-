@@ -107,6 +107,17 @@ $grid1 = array(
     array(0, 0, 7, 0, 0, 0, 3, 0, 0),
 );
 
+$grid3 = array(
+    array(8, 0, 0, 0, 0, 0, 0, 0, 0),
+    array(0, 0, 3, 6, 0, 0, 0, 0, 0),
+    array(0, 7, 0, 0, 9, 0, 2, 0, 0),
+    array(0, 5, 0, 0, 0, 7, 0, 0, 0),
+    array(0, 0, 0, 0, 4, 5, 7, 0, 0),
+    array(0, 0, 0, 1, 0, 0, 0, 3, 0),
+    array(0, 0, 1, 0, 0, 0, 0, 6, 8),
+    array(0, 0, 8, 5, 0, 0, 0, 1, 0),
+    array(0, 9, 0, 0, 0, 0, 4, 0, 0),
+);
 $grid = array(
     array(0, 0, 4, 0, 0, 6, 0, 0, 7),
     array(0, 0, 0, 1, 0, 0, 2, 0, 5),
@@ -118,7 +129,15 @@ $grid = array(
     array(7, 0, 5, 3, 0, 2, 0, 0, 4),
     array(6, 0, 0, 9, 0, 0, 1, 0, 0),
 );
+function microtime_float()
+{
+    list($usec, $sec) = explode(" ", microtime());
+    return ((float)$usec + (float)$sec);
+}
+$time_start = microtime_float();
+fill_grid($grid3);
+$time_end = microtime_float();
+$time = $time_end - $time_start;
 
-fill_grid($grid1);
-
+echo $time;
 
