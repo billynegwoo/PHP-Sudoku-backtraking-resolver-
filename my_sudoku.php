@@ -22,12 +22,8 @@ function get_next_coords($grid, $y, $x)
 function fill_cell($grid, $y, $x)
 {
     if ($grid[$x][$y] >0) {
-        if ($x * $y == 64) {
-            draw($grid);
-            return true;
-        }
         $next = get_next_coords($grid, $y, $x);
-        return fill_cell($grid, $next[1], $next[0]);
+        fill_cell($grid, $next[1], $next[0]);
     } else {
         for ($i = 1; $i < 10; $i++) {
             if (check_horizontal($grid, $x, $i) && check_vertical($grid, $y, $i) && check_square($grid, $y, $x, $i)) {
@@ -37,6 +33,7 @@ function fill_cell($grid, $y, $x)
                     return true;
                 }
                 $next = get_next_coords($grid, $y, $x);
+                if($next == false)draw($grid);
                 if(fill_cell($grid, $next[1], $next[0])) return true;
             }
         }
@@ -84,6 +81,7 @@ function check_square($grid, $y, $x, $value)
 
 function draw($grid)
 {
+    echo "\n";
     foreach ($grid as $line) {
         echo "|";
         foreach ($line as $case) {
@@ -91,6 +89,7 @@ function draw($grid)
         }
         echo "\n";
     }
+    echo "\n";
 }
 
 ;
