@@ -6,9 +6,9 @@ function fill_grid($grid)
 
 ;
 
-function get_next_coords($grid, $y, $x)
+function get_next_coords($y, $x)
 {
-    if ($x === 8 && $y < 8 ) {
+    if ($x === 8 && $y < 8) {
         $y = $y + 1;
         $x = 0;
     } else {
@@ -21,8 +21,8 @@ function get_next_coords($grid, $y, $x)
 
 function fill_cell($grid, $y, $x)
 {
-    if ($grid[$x][$y] >0) {
-        $next = get_next_coords($grid, $y, $x);
+    if ($grid[$x][$y] > 0) {
+        $next = get_next_coords($y, $x);
         fill_cell($grid, $next[1], $next[0]);
     } else {
         for ($i = 1; $i < 10; $i++) {
@@ -32,9 +32,9 @@ function fill_cell($grid, $y, $x)
                     draw($grid);
                     return true;
                 }
-                $next = get_next_coords($grid, $y, $x);
-                if($next == false)draw($grid);
-                if(fill_cell($grid, $next[1], $next[0])) return true;
+                $next = get_next_coords($y, $x);
+                if ($next == false) draw($grid);
+                if (fill_cell($grid, $next[1], $next[0])) return true;
             }
         }
         $grid[$x][$y] = 0;
@@ -133,6 +133,7 @@ function microtime_float()
     list($usec, $sec) = explode(" ", microtime());
     return ((float)$usec + (float)$sec);
 }
+
 $time_start = microtime_float();
 fill_grid($grid3);
 $time_end = microtime_float();
